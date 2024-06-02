@@ -30,8 +30,6 @@ function App() {
     } else {
       setError("Invalid username or password");
     }
-    setName("");
-    setPassword("");
   };
 
   return (
