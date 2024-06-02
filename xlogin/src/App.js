@@ -19,6 +19,10 @@ function App() {
   };
 
   const handleView = () => {
+    if (!name || !password) {
+      setError("Username and password must not be empty");
+      return;
+    }
     if (name === validCredentials.username && password === validCredentials.password) {
       setView(false);
       setShow("Welcome, user!");
@@ -33,9 +37,8 @@ function App() {
   return (
     <div>
       <h1>Login Page</h1>
-      {error && <p >{error}</p>}
+      {error && <p>{error}</p>}
       {view ? (
-        
         <form className="form" onSubmit={handleSubmit}>
           <label>Username:
             <input
@@ -53,7 +56,6 @@ function App() {
               required
             />
           </label>
-         
           <button className="submit">Submit</button>
         </form>
       ) : (
