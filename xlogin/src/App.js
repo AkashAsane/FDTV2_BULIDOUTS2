@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
   const [show, setShow] = useState("");
@@ -10,7 +10,7 @@ function App() {
 
   const validCredentials = {
     username: "user",
-    password: "password"
+    password: "password",
   };
 
   const handleSubmit = (e) => {
@@ -19,17 +19,18 @@ function App() {
   };
 
   const handleView = () => {
-    if (!name || !password) {
-      setError("Username and password must not be empty");
-      return;
-    }
-    if (name === validCredentials.username && password === validCredentials.password) {
+    if (
+      name === validCredentials.username &&
+      password === validCredentials.password
+    ) {
       setView(false);
       setShow("Welcome, user!");
       setError("");
     } else {
       setError("Invalid username or password");
     }
+    setName("");
+    setPassword("");
   };
 
   return (
@@ -38,22 +39,26 @@ function App() {
       {error && <p>{error}</p>}
       {view ? (
         <form className="form" onSubmit={handleSubmit}>
-          <label>Username:
+          <div>
+            <label>Username:</label>
             <input
               type="text"
               value={name}
               required
               onChange={(e) => setName(e.target.value)}
             />
-          </label>
-          <label>Password:
+          </div>
+          <div>
+          
+            <label>Password:</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-          </label>
+          </div>
+
           <button className="submit">Submit</button>
         </form>
       ) : (
